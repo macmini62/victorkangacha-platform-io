@@ -84,13 +84,13 @@ export default function RootLayout({
             <NavBar />
             <main className="flex-grow container mx-auto px-4 pt-16 pb-8">
               {children}
+              <SpeedInsights/>
+              <Analytics/>
             </main>
             <Footer />
           </div>
         </Providers>
         <StructuredData type="both" />
-        <SpeedInsights/>
-        <Analytics/>
       </body>
     </html>
   );

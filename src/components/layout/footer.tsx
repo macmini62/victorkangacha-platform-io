@@ -35,7 +35,7 @@ export default function Footer(){
               <Link target='_blank' href="https://kaggle.com/macmini62">
                 <FaKaggle className="w-5 h-5 fill-foreground/60 hover:fill-foreground"/>
               </Link>
-              <Link target='https://mail.google.com' href="mailto:victorkangacha@gmail.com">
+              <Link href="mailto:victorkangacha@gmail.com">
                 <Mail className="w-6 h-6 stroke-foreground/60 hover:stroke-foreground"/>
               </Link>
             </div>
