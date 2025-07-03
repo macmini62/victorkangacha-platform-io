@@ -19,7 +19,7 @@ export function NavBar() {
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="text-xl font-bold">
-            Victor Kang'acha | Portfolio
+            Victor Kang&apos;acha | Portfolio
           </Link>
 
           {/* Desktop Navigation */}

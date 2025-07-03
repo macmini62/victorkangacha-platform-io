@@ -1,6 +1,5 @@
 'use client';
 
-import Image from "next/image";
 import { SectionHeader } from "../shared/section-header";
 import { projectsData } from "@/data/projects";
 import { motion } from "framer-motion";
