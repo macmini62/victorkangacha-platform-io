@@ -6,6 +6,8 @@ import Footer from '@/components/layout/footer';
 import StructuredData from "@/components/structured-data";
 import { Providers } from './providers';
 import { NavBar } from '@/components/layout/navbar';
+import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const interSans = Inter({
   variable: '--font-inter-sans',
@@ -87,6 +89,8 @@ export default function RootLayout({
           </div>
         </Providers>
         <StructuredData type="both" />
+        <SpeedInsights/>
+        <Analytics/>
       </body>
     </html>
   );
