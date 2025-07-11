@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Badge } from "../ui/badge";
 import Image from "next/image";
-import { Brain, Code, MonitorCog, Building, Award, GraduationCap } from "lucide-react";
+import { Brain, Code, MonitorCog, Building, Award, GraduationCap, Download } from "lucide-react";
 import { Card } from "../ui/card";
 import { skillCategory } from "@/data/skills";
 import { experiences } from "@/data/experience";
@@ -11,39 +11,59 @@ import { certifications } from "@/data/certifications";
 import Link from "next/link";
 import { hobbies } from "@/data/hobbies";
 import { education } from "@/data/education";
+import { Button } from "../ui/button";
 
 export default function AboutDetail() {
+
+  const cv_download = () => {
+    fetch("/cv_document/CV.pdf").then((response) => {
+      response.blob().then((blob) => {
+        const fileURL = window.URL.createObjectURL(blob);
+        let alink = document.createElement("a");
+        alink.href = fileURL;
+        alink.download = "CV.pdf";
+        alink.click();
+      });
+    });
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-primary/5 to-background">
-      <div className="container mx-auto px-4 py-24">
+    <div className="min-h-screen bg-gradient-to-br from-background via-primary/5 to-background flex flex-col items-end pb-6">
+      <div className="container mx-auto px-4 py-24 flex flex-col">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className="mb-20"
         >
-          <div className="flex flex-col md:flex-row items-center gap-8">
-            <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-primary/10">
-              <Image fill sizes="192px" src="/headshot/headshot.jpg" priority alt="Victor Kang'acha" className="bg-transparent" />
-            </div>
-            <div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">Victor Paul Kang&apos;acha Kung&apos;u</h1>
-              <p className="text-xl text-muted-foreground mb-4">Data Scientist | AI/ML Innovator | IT Support</p>
-              <div className="flex flex-wrap gap-2">
-                <Badge variant='outline' className="bg-primary/10 inline-flex gap-1">
-                  <Brain className="w-3 h-3"/>
-                  AI/ML Expert
-                </Badge>
-                <Badge variant='outline' className="bg-primary/10 inline-flex gap-1">
-                  <Code className="w-3 h-3"/>
-                  FullStack Developer
-                </Badge>
-                <Badge variant='outline' className="bg-primary/10 inline-flex gap-1">
-                  <MonitorCog className="w-3 h-3"/>
-                  IT Support
-                </Badge>
+          <div className="flex flex-col items-end gap-10 md:flex-row md:items-baseline md:justify-between">
+            <div className="flex flex-col md:flex-row items-center gap-8">
+              <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-primary/10">
+                <Image fill sizes="192px" src="/headshot/headshot.jpg" priority alt="Victor Kang'acha" className="bg-transparent" />
+              </div>
+              <div>
+                <h1 className="text-4xl md:text-5xl font-bold mb-4">Victor Paul Kang&apos;acha Kung&apos;u</h1>
+                <p className="text-xl text-muted-foreground mb-4">Data Scientist | AI/ML Innovator | IT Support</p>
+                <div className="flex flex-wrap gap-2">
+                  <Badge variant='outline' className="bg-primary/10 inline-flex gap-1">
+                    <Brain className="w-3 h-3"/>
+                    AI/ML Expert
+                  </Badge>
+                  <Badge variant='outline' className="bg-primary/10 inline-flex gap-1">
+                    <Code className="w-3 h-3"/>
+                    FullStack Developer
+                  </Badge>
+                  <Badge variant='outline' className="bg-primary/10 inline-flex gap-1">
+                    <MonitorCog className="w-3 h-3"/>
+                    IT Support
+                  </Badge>
+                </div>
               </div>
             </div>
+            <Button onClick={() => cv_download()} className="cursor-pointer">
+              Download CV
+              <Download className="ml-2"/>
+            </Button>
           </div>
         </motion.div>
 
@@ -289,24 +309,21 @@ export default function AboutDetail() {
                   </div>
                 </div>
                 {
-                  education.honors && (
+                  education.major && (
                     <div className="mt-3">
-                      {education.honors.map((honor, index) => (
-                        <Badge
-                          key={index}
+                      <span className="font-bold text-sm">Major: </span>
+                      <Badge
                           variant="outline"
-                          className={`bg-primary/5 mb-2 ${index > 0 ? "ml-2" : ""}`}
+                          className='bg-primary/5 mb-2'
                         >
-                          {honor.name}
+                          {education.major}
                         </Badge>
-                      ))}
                     </div>
                   )
                 }
                 {
                   education.activities && (
-                    <div className="mt-4">
-                      <p className="text-sm font-medium mb-2">Activities and Societies:</p>
+                    <div className="">
                       <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1 ml-2">
                         {education.activities.map((activity, index) => (
                           <li key={index}>{activity.name}</li>
@@ -357,6 +374,10 @@ export default function AboutDetail() {
           </Card>
         </motion.div>
       </div>
+      <Button onClick={() => cv_download()} className="cursor-pointer">
+        Download CV
+        <Download className="ml-2"/>
+      </Button>
     </div>
   )
 }
