@@ -1,7 +1,3 @@
-export interface Honor {
-  name: string;
-}
-
 export interface Activity {
   name: string;
 }
@@ -13,7 +9,7 @@ export interface Education {
   startDate: string;
   endDate: string;
   gpa: string;
-  honors?: Honor[];
+  major: string;
   activities?: Activity[];
 }
 
@@ -24,4 +20,19 @@ export const education: Education = {
   startDate: "September 2021",
   endDate: "April 2025",
   gpa: "",
+  major: 'Data Science',
+  activities: [
+    {
+      name: 'Gained a strong foundation in data analysis, machine learning, statistics, and programming.'
+    },
+    {
+      name: 'Completed coursework in Python, SQL, Data Mining and Artificial Intelligence.'
+    },
+    {
+      name: 'Worked on hands-on projects including credit scoring models and fraud detection systems.'
+    },
+    {
+      name: 'Actively participated in hackathons, coding challenges, and tech communities within the university.'
+    },
+  ]
 };
