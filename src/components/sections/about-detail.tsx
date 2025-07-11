@@ -324,9 +324,12 @@ export default function AboutDetail() {
                 {
                   education.activities && (
                     <div className="">
-                      <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1 ml-2">
+                      <ul className="text-sm text-muted-foreground space-y-1 ml-2">
                         {education.activities.map((activity, index) => (
-                          <li key={index}>{activity.name}</li>
+                          <li key={index}>
+                            <span className="mr-2">&#9900;</span>
+                            <span className="">{activity.name}</span>
+                          </li>
                         ))}
                       </ul>
                     </div>
